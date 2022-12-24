@@ -1,4 +1,4 @@
-# PokeFind
+# PokeCartesian
 
 **Número da Lista**: Não se aplica<br>
 **Conteúdo da Disciplina**: Dividir para conquistar<br>
