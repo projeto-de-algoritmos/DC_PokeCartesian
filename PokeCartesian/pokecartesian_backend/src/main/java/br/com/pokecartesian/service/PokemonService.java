@@ -30,8 +30,7 @@ public class PokemonService {
         return pokemonDTOList;
     }
 
-    //DecimalFormat
-    public String closestPokemon() {
+    public List<Pokemon> cartesianPlane() {
         List<PokemonDTO> pokemonDTOList = new ArrayList<>();
         List<Pokemon> pokemonList = repository.findAll();
         pokemonList.forEach(pokemon -> pokemonDTOList.add(new PokemonDTO(pokemon)));
@@ -47,6 +46,19 @@ public class PokemonService {
                 pokemon.setCoordinateY(gerador.nextInt(300));
                 pokemonDTOList.add(new PokemonDTO(pokemon));
             });
+        }
+
+        repository.saveAll(pokemonList);
+
+        return pokemonList;
+    }
+
+    public String closestPokemon() {
+        List<PokemonDTO> pokemonDTOList = new ArrayList<>();
+        List<Pokemon> pokemonList = repository.findAll();
+        pokemonList.forEach(pokemon -> pokemonDTOList.add(new PokemonDTO(pokemon)));
+        if (pokemonDTOList.isEmpty()) {
+            throw new EmptyListPokemonException("Não existe pokêmon's cadastrados!");
         }
 
         Pokemon[]pokemonArray = new Pokemon[151];

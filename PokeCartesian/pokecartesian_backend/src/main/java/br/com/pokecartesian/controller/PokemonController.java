@@ -23,6 +23,15 @@ public class PokemonController {
         }
     }
 
+    @GetMapping(path = "/cartesianPlane")
+    public ResponseEntity<?> cartesianPlane(){
+        try {
+            return ResponseEntity.ok(service.cartesianPlane());
+        } catch (EmptyListPokemonException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
+    }
+
     @GetMapping(path = "/closestPokemon")
     public ResponseEntity<?> closestPokemon(){
         try {
