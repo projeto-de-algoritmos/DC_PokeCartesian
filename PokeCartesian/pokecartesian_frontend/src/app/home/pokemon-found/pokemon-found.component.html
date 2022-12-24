@@ -1,0 +1,25 @@
+<body class="modal-background">
+<button class="close" (click)="onNoClick()">
+  <mat-icon>close</mat-icon>
+</button>
+<div class="titulo"> We find the pokemon at</div>
+<div class="titulo" style="padding-top: 0px">{{area.name}}</div>
+<div style="text-align: center;">
+  <div *ngFor="let a of area.areas"  (change)="print()">
+    <div class="row frame" style="overflow:auto;">
+      {{a}}
+    </div>
+    <div class="row" style="">
+      <mat-icon class="row">arrow_downward</mat-icon>
+    </div>
+  </div>
+  <div class="area-frame" (change)="print()">
+    <div class="row">
+      {{area.name}}
+    </div>
+    <div class="row">
+      <img [src]="area.url" style="width:300px; height :300px; object-fit: contain">
+    </div>
+  </div>
+</div>
+</body>
