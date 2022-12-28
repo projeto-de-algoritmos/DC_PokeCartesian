@@ -14,15 +14,6 @@ public class PokemonController {
         this.service = service;
     }
 
-    @GetMapping(path = "/pokemons")
-    public ResponseEntity<?> listAllPokemon(){
-        try {
-            return ResponseEntity.ok(service.listAll());
-        } catch (EmptyListPokemonException ex) {
-            return ResponseEntity.badRequest().body(ex.getMessage());
-        }
-    }
-
     @GetMapping(path = "/cartesianPlane")
     public ResponseEntity<?> cartesianPlane(){
         try {
