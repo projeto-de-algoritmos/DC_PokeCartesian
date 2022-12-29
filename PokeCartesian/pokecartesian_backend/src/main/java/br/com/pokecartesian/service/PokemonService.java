@@ -30,8 +30,8 @@ public class PokemonService {
         List<Pokemon> pokemonList = new ArrayList<>();
         Random gerador = new Random();
 
-        for (int i = 0; i < 10; i++) {
-            Optional<Pokemon> optPokemon = repository.findById((long) gerador.nextInt(151));
+        for (int i = 1; i < 10; i++) {
+            Optional<Pokemon> optPokemon = repository.findById((long) i);
             pokemonList.add(optPokemon.get());
         }
 
@@ -56,25 +56,13 @@ public class PokemonService {
         });
 
         return pokemonsList;
+
     }
 
     public ResponseDTO closestPokemon() {
-        List<PokemonDTO> pokemonDTOList = new ArrayList<>();
-        List<Pokemon> pokemonUsedList = new ArrayList<>();
         List<Pokemon> pokemonList = repository.findAll();
-        pokemonList.forEach(pokemon -> {
-            if(pokemon.getCoordinateX() != 0 || pokemon.getCoordinateY() != 0){
-                pokemonDTOList.add(new PokemonDTO(pokemon));
-                pokemonUsedList.add(pokemon);
-            }
-
-        });
-        if (pokemonDTOList.isEmpty()) {
-            throw new EmptyListPokemonException("Não existe pokémon's cadastrados!");
-        }
-
-        Pokemon[] pokemonArray = new Pokemon[10];
-        pokemonUsedList.toArray(pokemonArray);
+        Pokemon[] pokemonArray = new Pokemon[pokemonList.size()];
+        pokemonList.toArray(pokemonArray);
         DecimalFormat df = new DecimalFormat("#.######");
 
         ResponseDTO responseDTO = new ResponseDTO();
