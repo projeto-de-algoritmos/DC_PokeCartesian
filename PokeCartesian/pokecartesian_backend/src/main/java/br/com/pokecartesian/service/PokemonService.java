@@ -1,13 +1,13 @@
 package br.com.pokecartesian.service;
 
 import br.com.pokecartesian.dto.PokemonDTO;
+import br.com.pokecartesian.dto.ResponseDTO;
 import br.com.pokecartesian.exception.EmptyListPokemonException;
 import br.com.pokecartesian.model.Pokemon;
 import br.com.pokecartesian.repository.PokemonRepository;
 import br.com.pokecartesian.util.PointUtil;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,56 +22,54 @@ public class PokemonService {
         this.repository = repository;
     }
 
-    public  Pokemon[][] cartesianPlane() {
+    public  Pokemon[] cartesianPlane() {
+        repository.findAll().forEach(pokemon -> {
+            pokemon.setCoordinateX(0);
+            pokemon.setCoordinateY(0);
+        });
         List<Pokemon> pokemonList = new ArrayList<>();
         Random gerador = new Random();
 
-        for (int i = 0; i < 20; i++) {
-            Optional<Pokemon> optPokemon = repository.findById((long) gerador.nextInt(151));
+        for (int i = 1; i < 10; i++) {
+            Optional<Pokemon> optPokemon = repository.findById((long) i);
             pokemonList.add(optPokemon.get());
         }
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 10; i++) {
             pokemonList.forEach(pokemon -> {
-                pokemon.setCoordinateX(gerador.nextInt(11));
-                pokemon.setCoordinateY(gerador.nextInt(11));
+                pokemon.setCoordinateX(gerador.nextInt(15));
+                pokemon.setCoordinateY(gerador.nextInt(15));
+
             });
         }
 
         repository.saveAll(pokemonList);
 
-        Long rowLen = 11L, colLen = 11L;
-        Pokemon[][] matrix = new Pokemon[11][11];
-        for(int i = 0; i < rowLen; i++)
-            for (int j = 0; j < colLen; j++)
-                matrix[i][j] = null;
+        Pokemon[] pokemonsList = new Pokemon[225];
 
-        for(int i = 0; i < rowLen; i++) {
-            for (int j = 0; j < colLen; j++) {
-                pokemonList.forEach(pokemon -> {
-                    Integer coordinateX = pokemon.getCoordinateX();
-                    Integer coordinateY = pokemon.getCoordinateY();
-                    matrix[coordinateX][coordinateY] = pokemon;
-                });
-            }
-        }
+        pokemonList.forEach(pokemon -> {
+            Integer coordinateX = pokemon.getCoordinateX();
+            Integer coordinateY = pokemon.getCoordinateY();
 
-        return matrix;
+            int position = 210 + coordinateX - (15 * coordinateY);
+            pokemonsList[position] = pokemon;
+        });
+
+        return pokemonsList;
+
     }
 
-    public String closestPokemon() {
-        List<PokemonDTO> pokemonDTOList = new ArrayList<>();
+    public ResponseDTO closestPokemon() {
         List<Pokemon> pokemonList = repository.findAll();
-        pokemonList.forEach(pokemon -> pokemonDTOList.add(new PokemonDTO(pokemon)));
-        if (pokemonDTOList.isEmpty()) {
-            throw new EmptyListPokemonException("Não existe pokémon's cadastrados!");
-        }
-
-        Pokemon[]pokemonArray = new Pokemon[151];
+        Pokemon[] pokemonArray = new Pokemon[pokemonList.size()];
         pokemonList.toArray(pokemonArray);
         DecimalFormat df = new DecimalFormat("#.######");
 
-        return "A menor distância encontrada é: " +
-                df.format(PointUtil.closest(pokemonArray, pokemonArray.length));
+        ResponseDTO responseDTO = new ResponseDTO();
+
+        responseDTO.setResposta("A menor distância encontrada é: " +
+                df.format(PointUtil.closest(pokemonArray, pokemonArray.length)));
+
+        return responseDTO;
     }
 }

@@ -2,6 +2,7 @@ package br.com.pokecartesian.controller;
 
 import br.com.pokecartesian.exception.EmptyListPokemonException;
 import br.com.pokecartesian.service.PokemonService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

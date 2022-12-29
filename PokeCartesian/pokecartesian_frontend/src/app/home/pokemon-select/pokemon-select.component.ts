@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {PokemonService} from '../services/pokemon.service';
-import {Pokemon} from '../interfaces/pokemons';
+import {Pokemons} from '../interfaces/pokemons';
 import {MatSelectChange} from "@angular/material/select";
 import {MatDialog} from "@angular/material/dialog";
-import {AreaService} from "../services/area.service";
-import {Area} from "../interfaces/areas";
 import {PokemonNotFoundComponent} from "../pokemon-not-found/pokemon-not-found.component";
 import { PokemonFoundComponent } from '../pokemon-found/pokemon-found.component';
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -17,6 +16,7 @@ import { PokemonFoundComponent } from '../pokemon-found/pokemon-found.component'
 })
 export class PokemonSelectComponent implements OnInit {
 
+  matrix: Observable<Pokemons[]> | undefined;
   optionsPokemon: any[] = [];
   optionsAreas: any[] = [];
   imageAlt: any;
@@ -31,7 +31,6 @@ export class PokemonSelectComponent implements OnInit {
   });
 
   constructor(
-    private areaService: AreaService,
     private pokemonService: PokemonService,
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
@@ -40,21 +39,7 @@ export class PokemonSelectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.pokemonService.listPokemon().subscribe((response: any) => {
-      response.map((pokemon: Pokemon) => {
-        this.extractPokemon(pokemon);
-      });
-      this.optionsPokemon = response
-      console.log(this.optionsPokemon)
-    });
-
-    this.areaService.listArea().subscribe((response: any) => {
-      response.map((area: Area) => {
-        this.extractArea(area);
-      });
-      this.optionsAreas = response;
-    })
+    this.matrix = this.pokemonService.cartesianPlane();
   }
 
   openDialogError(): void {
@@ -80,19 +65,11 @@ export class PokemonSelectComponent implements OnInit {
     });
   }
 
-  extractPokemon(pokemon: Pokemon) {
+  extractPokemon(pokemon: Pokemons) {
     return {
       id: pokemon.id,
       name: pokemon.name,
       url: pokemon.url
-    };
-  }
-
-  extractArea(area: Area) {
-    return {
-      id: area.id,
-      name: area.name,
-      url: area.url
     };
   }
 
@@ -115,9 +92,11 @@ export class PokemonSelectComponent implements OnInit {
   }
 
   find() {
-    this.areaService.findClosestArea(this.pokemon, this.area).subscribe((response: any) => {
+    this.pokemonService.closestPokemon().subscribe((response: any) => {
+      console.log(response)
       this.openDialog(response);
       }, (error: any) => {
+      console.log(error)
       this.openDialogError();
       }
     );
