@@ -30,11 +30,12 @@ public class PokemonService {
             Optional<Pokemon> optPokemon = repository.findById((long) gerador.nextInt(151));
             pokemonList.add(optPokemon.get());
         }
-
+        
         for (int i = 0; i < 20; i++) {
             pokemonList.forEach(pokemon -> {
                 pokemon.setCoordinateX(gerador.nextInt(11));
                 pokemon.setCoordinateY(gerador.nextInt(11));
+
             });
         }
 

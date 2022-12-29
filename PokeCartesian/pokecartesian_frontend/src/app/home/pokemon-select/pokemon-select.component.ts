@@ -17,6 +17,10 @@ import { PokemonFoundComponent } from '../pokemon-found/pokemon-found.component'
 })
 export class PokemonSelectComponent implements OnInit {
 
+  numbers = Array.of(
+    
+  )
+
   optionsPokemon: any[] = [];
   optionsAreas: any[] = [];
   imageAlt: any;
@@ -55,6 +59,10 @@ export class PokemonSelectComponent implements OnInit {
       });
       this.optionsAreas = response;
     })
+  }
+
+  calcCell(x: number, y: number): number{
+    this.numbers.at(60 + x - (11 * y)).;
   }
 
   openDialogError(): void {

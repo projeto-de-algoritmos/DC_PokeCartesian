@@ -13,6 +13,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import { PokemonNotFoundComponent } from './pokemon-not-found/pokemon-not-found.component';
 import { PokemonFoundComponent } from './pokemon-found/pokemon-found.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 
 @NgModule({
@@ -22,17 +23,18 @@ import { PokemonFoundComponent } from './pokemon-found/pokemon-found.component';
     PokemonNotFoundComponent,
     PokemonFoundComponent,
   ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    ReactiveFormsModule,
-    MatDialogModule
-  ],
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatGridListModule
+    ],
   exports: [HomeComponent]
 })
 export class HomeModule { }

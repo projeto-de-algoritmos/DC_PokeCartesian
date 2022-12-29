@@ -46,4 +46,13 @@ h4 {
   -webkit-text-stroke: 1px blue;
 }
 
+mat-grid-tile {
+  background: lightblue;
+}
+mat-grid-list {
+  padding-bottom: 0 !important;
+  margin-left: 32%;
+  margin-right: 32%;
+}
+
 
