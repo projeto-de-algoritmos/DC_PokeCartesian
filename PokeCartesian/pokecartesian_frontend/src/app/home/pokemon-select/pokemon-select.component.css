@@ -1,7 +1,3 @@
-img{
-  margin-bottom: 10px;
-}
-
 .area-image{
   object-fit: cover;
   border-radius: 50%;
@@ -46,13 +42,31 @@ h4 {
   -webkit-text-stroke: 1px blue;
 }
 
-mat-grid-tile {
-  background: lightblue;
-}
 mat-grid-list {
   padding-bottom: 0 !important;
-  margin-left: 32%;
-  margin-right: 32%;
+}
+
+.direita{
+  position: absolute;
+  right: 0;
+}
+
+.esquerda{
+  position: absolute;
+  left: 0;
+}
+
+.centro{
+  position: absolute;
+  left: 30%;
+  right: 30%;
+}
+
+.center {
+  margin-top: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 

@@ -39,3 +39,8 @@ body { margin: 0; font-family: pokemon, "Helvetica Neue", sans-serif; }
   width: fit-content;
   padding: 7%;
 }
+
+mat-grid-tile {
+  background-image: url("assets/grass.png");
+  background-size: contain;
+}

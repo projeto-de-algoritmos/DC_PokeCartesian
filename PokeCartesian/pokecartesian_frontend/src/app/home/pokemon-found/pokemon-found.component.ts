@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Pokemon} from "../interfaces/pokemons";
+import {Pokemons} from "../interfaces/pokemons";
 export interface DialogData {
-  pokemon: Pokemon;
+  pokemon: Pokemons;
 }
 
 @Component({
@@ -17,18 +17,13 @@ export class PokemonFoundComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
-  area: any = this.data
+  resposta: any = this.data
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  print() {
-    console.log(this.area)
-  }
-
   ngOnInit(): void {
-    console.log(this.area)
+    console.log(this.resposta.resposta)
   }
-
 }

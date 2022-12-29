@@ -1,9 +1,26 @@
 <form class="form mt-4" [formGroup]="pokemonForm" (ngSubmit)="find()" >
-  <mat-grid-list cols="11" rowHeight="1:1" gutterSize="2px">
-    <div *ngFor="let i of numbers">
-      <mat-grid-tile>
-        {{i}}
-      </mat-grid-tile>
+  <div class="row">
+    <div class="column esquerda" style="text-align: center; width: 30%">
+      <div class="center">
+        <div class="row"> matrix:  </div>
+        <div class="row"> Pokemons:  </div>
+      </div>
     </div>
-  </mat-grid-list>
+    <div class="column centro" style="width: 38%">
+      <mat-grid-list cols="15" rowHeight="1:1" gutterSize="2px">
+        <div *ngFor="let i of matrix | async">
+          <mat-grid-tile>
+            <div *ngIf="i != null">
+              <img [src]="i.url" style="max-width:98%; max-height:98%; margin-bottom: 0px">
+            </div>
+          </mat-grid-tile>
+        </div>
+      </mat-grid-list>
+    </div>
+    <div class="column direita" style="width: 30%">
+      <button type="submit" class="center" mat-flat-button color="primary">
+        Go!
+      </button>
+    </div>
+  </div>
 </form>

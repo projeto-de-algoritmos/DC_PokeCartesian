@@ -1,9 +1,7 @@
-export interface Pokemon {
+export interface Pokemons {
   id: number;
   name: string;
   url: string;
-  firstType: string;
-  secondType: string;
+  coordinateX: number;
+  coordinatey: number;
 }
-
-export type Pokemons = Array<Pokemon>;
