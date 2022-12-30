@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PokemonNotFoundComponent } from './pokemon-not-found.component';
+import { ErrorComponent } from './error.component';
 
 describe('PokemonNotFoundComponent', () => {
-  let component: PokemonNotFoundComponent;
-  let fixture: ComponentFixture<PokemonNotFoundComponent>;
+  let component: ErrorComponent;
+  let fixture: ComponentFixture<ErrorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PokemonNotFoundComponent ]
+      declarations: [ ErrorComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PokemonNotFoundComponent);
+    fixture = TestBed.createComponent(ErrorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

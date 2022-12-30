@@ -28,20 +28,13 @@ public class PokemonService {
             pokemon.setCoordinateY(0);
         });
         List<Pokemon> pokemonList = new ArrayList<>();
-        Random gerador = new Random();
 
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             Optional<Pokemon> optPokemon = repository.findById((long) i);
             pokemonList.add(optPokemon.get());
         }
 
-        for (int i = 0; i < 10; i++) {
-            pokemonList.forEach(pokemon -> {
-                pokemon.setCoordinateX(gerador.nextInt(15));
-                pokemon.setCoordinateY(gerador.nextInt(15));
-
-            });
-        }
+        pokemonList = setCoordenates(pokemonList);
 
         repository.saveAll(pokemonList);
 
@@ -59,6 +52,32 @@ public class PokemonService {
 
     }
 
+    public List<Pokemon>  setCoordenates(List<Pokemon> pokemonList ){
+        Random gerador = new Random();
+        pokemonList.forEach(pokemon -> {
+            pokemon.setCoordinateX(gerador.nextInt(15));
+            pokemon.setCoordinateY(gerador.nextInt(15));
+            System.out.println(pokemon.getCoordinateX()+ "," +pokemon.getCoordinateY() + " -> " + pokemon.getName());
+        });
+
+        for (int i = 1; i <= 10; i++) {
+            int cont = 0;
+            Pokemon pokemonAtual = pokemonList.get(i-1);
+            for (int j = 0; j <= 9; j++){
+                if(pokemonList.get(j).getCoordinateX().equals(pokemonAtual.getCoordinateX()) &&
+                        pokemonList.get(j).getCoordinateY().equals(pokemonAtual.getCoordinateY())){
+                    cont++;
+                }
+            }
+            if(cont > 1){
+                pokemonList = setCoordenates(pokemonList);
+                break;
+            }
+        }
+
+        return pokemonList;
+    }
+
     public ResponseDTO closestPokemon() {
         List<Pokemon> pokemonList = repository.findAll();
         Pokemon[] pokemonArray = new Pokemon[pokemonList.size()];
@@ -67,8 +86,7 @@ public class PokemonService {
 
         ResponseDTO responseDTO = new ResponseDTO();
 
-        responseDTO.setResposta("A menor distância encontrada é: " +
-                df.format(PointUtil.closest(pokemonArray, pokemonArray.length)));
+        responseDTO.setResposta(df.format(PointUtil.closest(pokemonArray, pokemonArray.length)));
 
         return responseDTO;
     }

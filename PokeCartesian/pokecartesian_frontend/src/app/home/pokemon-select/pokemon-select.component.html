@@ -2,8 +2,14 @@
   <div class="row">
     <div class="column esquerda" style="text-align: center; width: 30%">
       <div class="center">
-        <div class="row"> matrix:  </div>
-        <div class="row"> Pokemons:  </div>
+        <div class="row"> matrix: 15x15 </div>
+        <div class="row"> Pokemons: 10 </div>
+        <button type="button" mat-flat-button color="primary"
+                style="margin-top: 10%; text-align: center"
+                (click)="loadMatrix()"
+                matTooltip="Sortear matrix">
+          <mat-icon style="margin-right: 0px;margin-left: 0px;">refresh</mat-icon>
+        </button>
       </div>
     </div>
     <div class="column centro" style="width: 38%">

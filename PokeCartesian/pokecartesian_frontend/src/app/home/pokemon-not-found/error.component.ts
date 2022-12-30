@@ -6,11 +6,11 @@ import { DialogData } from '../pokemon-found/pokemon-found.component';
 
 @Component({
   selector: 'app-pokemon-not-found',
-  templateUrl: './pokemon-not-found.component.html',
-  styleUrls: ['./pokemon-not-found.component.css']
+  templateUrl: './error.component.html',
+  styleUrls: ['./error.component.css']
 })
-export class PokemonNotFoundComponent {
-  constructor(public dialogRef: MatDialogRef<PokemonNotFoundComponent>,
+export class ErrorComponent {
+  constructor(public dialogRef: MatDialogRef<ErrorComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
   onNoClick(): void {
     this.dialogRef.close();

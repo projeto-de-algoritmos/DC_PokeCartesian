@@ -8,24 +8,11 @@
 }
 
 .titulo{
-  padding-top: 25px;
+  padding-top: 10%;
   color: yellow;
   -webkit-text-stroke: 1px blue;
   font-size: 1.5em;
   text-align: center;
-}
-.description{
-  color: black;
-  font-size: 1em;
-  text-align: center;
-}
-.name{
-  font-size: 3em;
-  color: yellow;
-  -webkit-text-stroke: 2px blue;
-  text-align: center;
-  position: relative;
-  top: -30px;
 }
 
 .imagem{

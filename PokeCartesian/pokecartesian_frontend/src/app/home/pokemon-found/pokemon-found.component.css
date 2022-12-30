@@ -8,12 +8,14 @@
 }
 
 .titulo{
+  padding-top: 35%;
   color: yellow;
   -webkit-text-stroke: 1px blue;
   font-size: 1.5em;
   text-align: center;
 }
 .name{
+  padding-top: 8%;
   font-size: 3em;
   color: yellow;
   -webkit-text-stroke: 2px blue;

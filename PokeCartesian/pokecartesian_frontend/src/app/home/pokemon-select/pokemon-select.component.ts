@@ -4,7 +4,7 @@ import {PokemonService} from '../services/pokemon.service';
 import {Pokemons} from '../interfaces/pokemons';
 import {MatSelectChange} from "@angular/material/select";
 import {MatDialog} from "@angular/material/dialog";
-import {PokemonNotFoundComponent} from "../pokemon-not-found/pokemon-not-found.component";
+import {ErrorComponent} from "../pokemon-not-found/error.component";
 import { PokemonFoundComponent } from '../pokemon-found/pokemon-found.component';
 import {Observable} from "rxjs";
 
@@ -15,20 +15,9 @@ import {Observable} from "rxjs";
   styleUrls: ['./pokemon-select.component.css']
 })
 export class PokemonSelectComponent implements OnInit {
-
   matrix: Observable<Pokemons[]> | undefined;
-  optionsPokemon: any[] = [];
-  optionsAreas: any[] = [];
-  imageAlt: any;
-  imageSourceSelf: any;
-  imageArea: any;
-  pokemon: any = null;
-  area: any = null;
 
-  pokemonForm = this.formBuilder.group({
-    pokemon: '',
-    area: '',
-  });
+  pokemonForm = this.formBuilder.group({});
 
   constructor(
     private pokemonService: PokemonService,
@@ -39,17 +28,17 @@ export class PokemonSelectComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadMatrix()
+  }
+
+  loadMatrix(): void {
     this.matrix = this.pokemonService.cartesianPlane();
   }
 
   openDialogError(): void {
-    const dialogRef = this.dialog.open(PokemonNotFoundComponent, {
+    const dialogRef = this.dialog.open(ErrorComponent, {
       width: '500px',
       height: '500px',
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 
@@ -59,36 +48,6 @@ export class PokemonSelectComponent implements OnInit {
       height: '500px',
       data: response,
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
-  extractPokemon(pokemon: Pokemons) {
-    return {
-      id: pokemon.id,
-      name: pokemon.name,
-      url: pokemon.url
-    };
-  }
-
-  loadPokemonSelf($event: MatSelectChange) {
-    if($event.value !== null){
-      this.imageSourceSelf = $event.value.url
-      this.pokemon = $event.value.id
-    } else {
-      this.pokemon = $event.value
-    }
-  }
-
-  loadArea($event: MatSelectChange) {
-    if($event.value !== null){
-      this.imageArea = $event.value.url
-      this.area = $event.value.id
-    } else {
-      this.area = $event.value
-    }
   }
 
   find() {
