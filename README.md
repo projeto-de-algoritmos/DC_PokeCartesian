@@ -16,16 +16,11 @@ O objetivo do PokeCartesian é apresentar uma interface direta e simples de util
 
 ### Pagina inicial (Sem Seleção)
 
-![Itens não selecionados](assets-readme/pokefind-notselected.png) 
+![Pagina Inicial](assets-readme/matrix.png)
 
-### Pagina inicial (Area e Pokemon Selecionados)
+### Modal de resultado
 
-![Pokemons selecionados](assets-readme/pokefind-selected.png) 
-
-### Modal de caminho
-
-![Modal Caminho Inicio](assets-readme/pokefind-modal-1.png) 
-![Modal Caminho Final](assets-readme/pokefind-modal-2.png) 
+![Modal Resultado](assets-readme/result.png) 
 
 ## Instalação 
 **Linguagem**: Java, Typescript<br>
@@ -60,11 +55,11 @@ http://localhost:4200
 ```
 
 ## Uso 
-Para a utilizaçao devemos selecionar dois pokémons e em seguida apertar o botão: ``"Go!"``.
+Para a utilizaçao devemos apertar o botão de refresh até ter uma matrix desejada e em seguida apertar o botão: ``"Go!"``.
 
 ## Outros 
 
 ### Download Apresentação
 
-Segue o Link para download da [Apresentação do projeto](assets-readme/apresentacao-pokegraph.mp4).<br>
+Segue o Link para download da [Apresentação do projeto](assets-readme/pokeCartesian.mp4).<br>
 (Para download, clique no link e depois nas opções *Download* ou *View Raw*)
