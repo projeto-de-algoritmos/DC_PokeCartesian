@@ -10,7 +10,7 @@ export interface DialogData {
   templateUrl: './pokemon-found.component.html',
   styleUrls: ['./pokemon-found.component.css']
 })
-export class PokemonFoundComponent implements OnInit {
+export class PokemonFoundComponent{
 
   constructor(
     public dialogRef: MatDialogRef<PokemonFoundComponent>,
@@ -21,9 +21,5 @@ export class PokemonFoundComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-
-  ngOnInit(): void {
-    console.log(this.resposta.resposta)
   }
 }

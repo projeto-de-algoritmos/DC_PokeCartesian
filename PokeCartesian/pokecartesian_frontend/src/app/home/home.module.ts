@@ -11,16 +11,17 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
-import { PokemonNotFoundComponent } from './pokemon-not-found/pokemon-not-found.component';
+import { ErrorComponent } from './pokemon-not-found/error.component';
 import { PokemonFoundComponent } from './pokemon-found/pokemon-found.component';
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     PokemonSelectComponent,
-    PokemonNotFoundComponent,
+    ErrorComponent,
     PokemonFoundComponent,
   ],
     imports: [
@@ -33,7 +34,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
         MatSelectModule,
         ReactiveFormsModule,
         MatDialogModule,
-        MatGridListModule
+        MatGridListModule,
+        MatTooltipModule
     ],
   exports: [HomeComponent]
 })
